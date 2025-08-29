@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Lessons Learned </title>
+  <link rel="stylesheet" href="Topbar.css">
+
+  <style>
+    /* ...existing code... */
+    html,body,iframe{height:100%;margin:0;border:0}
+    iframe{width:100%}
+
+    /* new: center the h5 in the middle of the page (overlaying the iframe) */
+    .centered {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      margin: 0;
+      font-size: 1.25rem;
+      color: #000;
+      background: rgba(255,255,255,0.75);
+      padding: 8px 12px;
+      border-radius: 6px;
+      pointer-events: none; /* remove if you need it clickable */
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div id="topbar"></div>
+
+<script>
+  fetch("Topbar.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("topbar").innerHTML = html;
+    });
+</script>
+  
+  </header>
+  <!-- ...existing code... -->
+  <!-- <iframe src="../index.html" title="Index"></iframe> -->
+<main>
+  
+  <!-- changed: added class to center on page -->
+  <h5 class="centered" style="color: black;">Lessons Learned</h5>
+  </main>
+</body>
