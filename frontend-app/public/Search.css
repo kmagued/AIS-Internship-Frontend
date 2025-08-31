@@ -1,0 +1,139 @@
+:root {
+  --accent:#06b6d4;
+  --muted:#9aa4b2;
+  --white:#0f1724; /* text color (dark now since no bg) */
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  background: transparent; /* no background */
+  color: var(--white);
+  min-height: 150vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 5px 16px;
+}
+
+.container {
+  width: 100%;
+  max-width: 920px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.search-card {
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.search-row {
+  display: flex;
+  gap: 8px;
+}
+
+.search-input {
+  flex: 1;
+  border: 1px solid rgba(0,0,0,0.2);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.search-btn {
+  background: var(--accent);
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.meta {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.results {
+  margin-top: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.result {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.result:hover {
+  outline: 2px solid rgba(6,182,212,0.18);
+}
+
+.title {
+  font-weight: 600;
+}
+
+.snippet {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.highlight {
+  color: var(--accent);
+  padding: 0 3px;
+  border-radius: 3px;
+}
+
+.suggestions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.chip {
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 13px;
+  border: 1px solid rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+}
+
+.empty {
+  color: var(--muted);
+  padding: 18px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+@media (max-width:1400px) {
+  .search-row {
+    flex-direction: column;
+  }
+  .search-btn {
+    width: 100%;
+  }
+}

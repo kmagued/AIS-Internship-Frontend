@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Create Lesson</title>
+  <link rel="stylesheet" href="Topbar.css">
+  <link rel="stylesheet" href="create-lesson.component.css">
+
+  <div id="topbar"></div>
+<script>
+  fetch("Topbar.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("topbar").innerHTML = html;
+    });
+</script>
+</head>
+<body>
+    
+
+<div class="create-lesson">
+  <h2>Create Lesson</h2>
+
+  <form #lessonForm="ngForm" (ngSubmit)="onSubmit(lessonForm)">
+    <!-- Title -->
+    <div class="form-group">
+      <label for="title">Lesson title *</label>
+      <input 
+        id="title" 
+        name="title" 
+        [(ngModel)]="lesson.title" 
+        required 
+        minlength="10" 
+        #title="ngModel">
+      <div *ngIf="title.invalid && title.touched" class="error">
+       
+        <div *ngIf="title.errors?.['minlength']">Title should be at least 10 characters long.</div>
+      </div>
+    </div>
+
+    <!-- Project -->
+   <div class="form-group">
+        <label for="projectName">Project Name*</label>
+        <input type="text" id="projectName" value="DCS Installation">
+        <div class="form-hint">This is a hint text to help user.</div>
+      </div>
+
+    <!-- Department & Segment -->
+    <div class="form-group">
+      <label>Department and Function *</label>
+      <select name="department" [(ngModel)]="lesson.department" required #department="ngModel">
+        <option value="">Department</option>
+        <option value="Industrial Automation">Industrial Automation</option>
+        <option value="Energy">Energy</option>
+        <option value="Digital Solutions">Digital Solutions</option>
+        <option value="Project Services">Project Services</option>
+      </select>
+      <div *ngIf="department.invalid && department.touched" class="error">
+        <!-- Department is required. -->
+      </div>
+        <label>segment *</label>
+      <select name="segment" [(ngModel)]="lesson.segment" required #segment="ngModel">
+        <option value="">Segment</option>
+        <option value="Oil & Gas">Oil & Gas</option>
+        <option value="Power">Power</option>
+        <option value="Water & Wastewater">Water & Wastewater</option>
+        <option value="Chemicals & Petrochemicals">Chemicals & Petrochemicals</option>
+        <option value="Food & Beverage">Food & Beverage</option>
+        <option value="Pharmaceuticals">Pharmaceuticals</option>
+        <option value="Mining & Metals">Mining & Metals</option>
+        <option value="Marine">Marine</option>
+        <option value="Data Centers">Data Centers</option>
+        <option value="Renewables">Renewables</option>
+        <option value="Building">Building</option>
+        <option value="Transportation">Transportation</option>
+        <option value="Infrastructure">Infrastructure</option>
+        <option value="Automotive">Automotive</option>
+        <option value="Aerospace">Aerospace</option>
+        <option value="Others">Others</option>
+      </select>
+      <div *ngIf="segment.invalid && segment.touched" class="error">
+        <!-- Segment is required. -->
+      </div>
+    </div>
+
+    <!-- Vendor -->
+    <div class="form-group">
+      <label>Vendor</label>
+      <select name="vendor" [(ngModel)]="lesson.vendor">
+        <option value="">Select vendor</option>
+        <option value="abb">ABB Robotics</option>
+        <option value="siemens">Siemens Automation</option>
+        <option value="mitsubishi">Mitsubishi Electric</option>
+        <option value="rockwell">Rockwell Automation</option>
+        <option value="emerson">Emerson Process Management</option>
+        <option value="honeywell">Honeywell Industrial Solutions</option>
+      </select>
+    </div>
+
+    <!-- Client -->
+    <div class="form-group">
+      <label>Client</label>
+      <select name="client" [(ngModel)]="lesson.client">
+        <option value="">Select client</option>
+        <option value="quantum">Quantum Robotics</option>
+        <option value="vertex">Vertex Automation Systems</option>
+        <option value="orion">Orion Electric Solutions</option>
+        <option value="nexus">Nexus Automation Group</option>
+        <option value="titan">Titan Process Solutions</option>
+        <option value="apex">Apex Industrial Technologies</option>
+      </select>
+    </div>
+
+    <!-- Contact -->
+    <div class="form-group">
+      <label>Person to contact</label>
+      <input 
+        type="email" 
+        name="contact" 
+        [(ngModel)]="lesson.contact" 
+        placeholder="ahmed.mahdy@se.com">
+    </div>
+
+    <!-- Actions -->
+    <div class="form-actions">
+      <button type="button" (click)="saveDraft()">Save as draft</button>
+      <button type="submit" [disabled]="!lessonForm.valid">Submit</button>
+    </div>
+  </form>
+</div>
+<h3>All Lessons</h3>
+<div class="cards-container">
+  <div class="card" *ngFor="let item of lessons">
+    <img src="https://picsum.photos/400/200" alt="lesson">
+    <div class="card-content">
+      <h4>{{ item.title }}</h4>
+      <p>Project: {{ item.project }}</p>
+      <p>Department: {{ item.department }}</p>
+      <p>Segment: {{ item.segment }}</p>
+      <p *ngIf="item.vendor">Vendor: {{ item.vendor }}</p>
+      <p *ngIf="item.client">Client: {{ item.client }}</p>
+      <p *ngIf="item.contact">Contact: {{ item.contact }}</p>
+
+      <div class="tags">
+        <span class="tag" *ngFor="let tag of [item.project, item.department, item.segment]">{{ tag }}</span>
+      </div>
+    </div>
+    <div>
+       <button>
+        <a href="Open_lesson">Open Lesson</a></button>
+    </div>
+    
+  </div>
+</div>
+
+</body>
+</html>
