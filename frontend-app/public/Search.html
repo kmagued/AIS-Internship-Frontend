@@ -1,0 +1,207 @@
+<!-- <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Search</title> -->
+  <link rel="stylesheet" href="Search.css">
+    <link rel="stylesheet" href="Topbar.css">
+  
+<!-- </head>
+<body> -->
+    <div id="topbar"></div>
+<script>
+  fetch("Topbar.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("topbar").innerHTML = html;
+    });
+</script>
+  <div class="container">
+    <header>
+      <h1></h1>
+    </header>
+
+    <section class="search-card" aria-label="Search">
+      <div class="search-row">
+        <input id="q" class="search-input" type="search" placeholder="Search projects, docs, users..." aria-label="Search query" autocomplete="off" />
+        <button id="go" class="search-btn" aria-label="Search">Search</button>
+      </div>
+      <div class="meta" id="meta">Type and press Enter — results update as you type.</div>
+
+      <div class="suggestions" id="suggestions" aria-hidden="true"></div>
+
+      <div class="results" id="results" role="list" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <!-- <script>
+    // Simple client-side search UI scaffold.
+    // Replace fetchSearch() with your real backend endpoint or indexing search.
+    (function(){
+      const qEl = document.getElementById('q');
+      const go = document.getElementById('go');
+      const resultsEl = document.getElementById('results');
+      const suggestionsEl = document.getElementById('suggestions');
+      const metaEl = document.getElementById('meta');
+
+      let lastQuery = '';
+      let debounceTimer = null;
+      let activeIndex = -1;
+      let lastResults = [];
+
+      function debounce(fn, ms=300){
+        return (...args)=>{ clearTimeout(debounceTimer); debounceTimer=setTimeout(()=>fn(...args), ms); };
+      }
+
+      async function fetchSearch(query){
+        // Default demo: local fuzzy search over sample data.
+        // Replace this block with: return fetch(`/api/search?q=${encodeURIComponent(query)}`).then(r=>r.json())
+        const demo = [
+          {id:1,title:'Frontend Dashboard',snippet:'React + TypeScript admin dashboard'},
+          {id:2,title:'User Authentication',snippet:'Login, signup and JWT flow'},
+          {id:3,title:'Project Search Service',snippet:'Search microservice using Elastic/Algolia'},
+          {id:4,title:'API Docs',snippet:'How to call the REST endpoints'},
+          {id:5,title:'Internship Guidelines',snippet:'Onboarding and tasks for interns'},
+        ];
+        if(!query) return [];
+        const q = query.toLowerCase();
+        return demo.filter(d => (d.title + ' ' + d.snippet).toLowerCase().includes(q));
+      }
+
+      function highlight(text, q){
+        if(!q) return escapeHtml(text);
+        const idx = text.toLowerCase().indexOf(q.toLowerCase());
+        if(idx === -1) return escapeHtml(text);
+        const before = escapeHtml(text.slice(0, idx));
+        const hit = escapeHtml(text.slice(idx, idx + q.length));
+        const after = escapeHtml(text.slice(idx + q.length));
+        return `${before}<span class="highlight">${hit}</span>${after}`;
+      }
+
+      function escapeHtml(s){ return s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+      function renderSuggestions(items, query){
+        suggestionsEl.innerHTML = '';
+        if(!query) { suggestionsEl.setAttribute('aria-hidden','true'); return; }
+        if(items.length === 0){
+          const chip = document.createElement('div');
+          chip.className='chip';
+          chip.textContent = `Search for "${query}"`;
+          chip.addEventListener('click', ()=>performSearch(query));
+          suggestionsEl.appendChild(chip);
+        } else {
+          items.slice(0,6).forEach(it=>{
+            const chip = document.createElement('div');
+            chip.className='chip';
+            chip.textContent = it.title;
+            chip.addEventListener('click', ()=>{ qEl.value = it.title; performSearch(it.title); });
+            suggestionsEl.appendChild(chip);
+          });
+        }
+        suggestionsEl.setAttribute('aria-hidden','false');
+      }
+
+      function renderResults(items, query){
+        resultsEl.innerHTML = '';
+        lastResults = items;
+        activeIndex = -1;
+        if(items.length === 0){
+          resultsEl.innerHTML = '<div class="empty">No results</div>';
+          metaEl.textContent = 'No results found';
+          return;
+        }
+        items.forEach((it, i)=>{
+          const el = document.createElement('div');
+          el.className='result';
+          el.setAttribute('role','listitem');
+          el.tabIndex = 0;
+          el.innerHTML = `<div class="title">${highlight(it.title, query)}</div><div class="snippet">${highlight(it.snippet, query)}</div>`;
+          el.addEventListener('click', ()=>openResult(it));
+          el.addEventListener('keydown', (e)=> {
+            if(e.key === 'Enter') openResult(it);
+          });
+          resultsEl.appendChild(el);
+        });
+        metaEl.textContent = `${items.length} result${items.length>1?'s':''}`;
+      }
+
+      function openResult(item){
+        // Adjust behavior: open details, navigate, or emit event.
+        // For demo: alert. Replace with location.href = `/items/${item.id}` if needed.
+        window.alert('Open: ' + item.title);
+        saveRecent(item.title);
+      }
+
+      function saveRecent(term){
+        try{
+          const k='search.recent';
+          const arr = JSON.parse(localStorage.getItem(k) || '[]');
+          const filtered = [term, ...arr.filter(t=>t!==term)].slice(0,8);
+          localStorage.setItem(k, JSON.stringify(filtered));
+        }catch(e){}
+      }
+
+      function loadRecent(){
+        try{
+          const k='search.recent';
+          return JSON.parse(localStorage.getItem(k) || '[]');
+        }catch(e){ return []; }
+      }
+
+      async function performSearch(query){
+        lastQuery = query;
+        if(!query) {
+          renderResults([], query);
+          renderSuggestions([], query);
+          return;
+        }
+        metaEl.textContent = 'Searching...';
+        const items = await fetchSearch(query);
+        renderResults(items, query);
+        renderSuggestions(items, query);
+      }
+
+      const liveSearch = debounce((v)=>performSearch(v), 250);
+
+      qEl.addEventListener('input', (e)=> {
+        const v = e.target.value.trim();
+        liveSearch(v);
+      });
+
+      go.addEventListener('click', ()=>performSearch(qEl.value.trim()));
+
+      qEl.addEventListener('keydown', (e)=>{
+        const visible = resultsEl.children;
+        if(e.key === 'ArrowDown'){ e.preventDefault(); if(visible.length>0){ activeIndex = Math.min(activeIndex+1, visible.length-1); setActive(visible, activeIndex); } }
+        else if(e.key === 'ArrowUp'){ e.preventDefault(); if(visible.length>0){ activeIndex = Math.max(activeIndex-1, 0); setActive(visible, activeIndex); } }
+        else if(e.key === 'Enter'){ e.preventDefault(); if(activeIndex >=0 && visible[activeIndex]) visible[activeIndex].click(); else performSearch(qEl.value.trim()); }
+        else if(e.key === 'Escape'){ qEl.value=''; performSearch(''); }
+      });
+
+      function setActive(list, idx){
+        for(let i=0;i<list.length;i++){
+          list[i].style.outline = (i===idx) ? '2px solid rgba(6,182,212,0.18)' : 'none';
+          if(i===idx) list[i].scrollIntoView({block:'nearest'});
+        }
+      }
+
+      // quick load recent chips
+      const recent = loadRecent();
+      if(recent.length){
+        recent.slice(0,6).forEach(r=>{
+          const chip = document.createElement('div');
+          chip.className='chip';
+          chip.textContent = r;
+          chip.addEventListener('click', ()=>{ qEl.value = r; performSearch(r); });
+          suggestionsEl.appendChild(chip);
+        });
+        suggestionsEl.setAttribute('aria-hidden','false');
+      }
+
+      // initial focus
+      qEl.focus();
+    })();
+  </script> -->
+<!-- </body>
+</html> -->

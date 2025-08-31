@@ -1,0 +1,17 @@
+<hr>
+<link rel="stylesheet" href="create-lesson.component.css">
+<h3>All Lessons</h3>
+<div class="cards-container">
+  <div class="card" *ngFor="let item of lessons">
+    <div class="card-content">
+      <h4>{{ item.title }}</h4>
+      <p>Project: {{ item.project }}</p>
+      <p>Department: {{ item.department }}</p>
+      <p>Segment: {{ item.segment }}</p>
+      <p *ngIf="item.vendor">Vendor: {{ item.vendor }}</p>
+      <p *ngIf="item.client">Client: {{ item.client }}</p>
+      <p *ngIf="item.contact">Contact: {{ item.contact }}</p>
+    </div>
+    <button>Open lesson</button>
+  </div>
+</div>
