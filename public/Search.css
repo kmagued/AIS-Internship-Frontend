@@ -1,12 +1,13 @@
 :root {
-  --accent:#06b6d4;
-  --muted:#9aa4b2;
-  --white:#0f1724; /* text color (dark now since no bg) */
+  --accent: #06b6d4;
+  --muted: #9aa4b2;
+  --white: #0f1724; /* text color (dark now since no bg) */
 }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
+    Arial;
   background: transparent; /* no background */
   color: var(--white);
   min-height: 150vh;
@@ -34,7 +35,7 @@ h1 {
 }
 
 .search-card {
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 16px;
   border-radius: 10px;
 }
@@ -46,7 +47,7 @@ h1 {
 
 .search-input {
   flex: 1;
-  border: 1px solid rgba(0,0,0,0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 12px 14px;
   border-radius: 8px;
   font-size: 15px;
@@ -76,7 +77,7 @@ h1 {
 .result {
   padding: 12px;
   border-radius: 8px;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -84,7 +85,7 @@ h1 {
 }
 
 .result:hover {
-  outline: 2px solid rgba(6,182,212,0.18);
+  outline: 2px solid rgba(6, 182, 212, 0.18);
 }
 
 .title {
@@ -114,7 +115,7 @@ h1 {
   border-radius: 999px;
   color: var(--muted);
   font-size: 13px;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
@@ -129,7 +130,7 @@ h1 {
   border-radius: 8px;
 }
 
-@media (max-width:1400px) {
+@media (max-width: 1400px) {
   .search-row {
     flex-direction: column;
   }

@@ -4,38 +4,47 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Search</title> -->
-  <link rel="stylesheet" href="Search.css">
-    <link rel="stylesheet" href="Topbar.css">
-  
+<link rel="stylesheet" href="Search.css" />
+<link rel="stylesheet" href="Topbar.css" />
+
 <!-- </head>
 <body> -->
-    <div id="topbar"></div>
+<div id="topbar"></div>
 <script>
   fetch("Topbar.html")
-    .then(res => res.text())
-    .then(html => {
+    .then((res) => res.text())
+    .then((html) => {
       document.getElementById("topbar").innerHTML = html;
     });
 </script>
-  <div class="container">
-    <header>
-      <h1></h1>
-    </header>
+<div class="container">
+  <header>
+    <h1></h1>
+  </header>
 
-    <section class="search-card" aria-label="Search">
-      <div class="search-row">
-        <input id="q" class="search-input" type="search" placeholder="Search projects, docs, users..." aria-label="Search query" autocomplete="off" />
-        <button id="go" class="search-btn" aria-label="Search">Search</button>
-      </div>
-      <div class="meta" id="meta">Type and press Enter — results update as you type.</div>
+  <section class="search-card" aria-label="Search">
+    <div class="search-row">
+      <input
+        id="q"
+        class="search-input"
+        type="search"
+        placeholder="Search projects, docs, users..."
+        aria-label="Search query"
+        autocomplete="off"
+      />
+      <button id="go" class="search-btn" aria-label="Search">Search</button>
+    </div>
+    <div class="meta" id="meta">
+      Type and press Enter — results update as you type.
+    </div>
 
-      <div class="suggestions" id="suggestions" aria-hidden="true"></div>
+    <div class="suggestions" id="suggestions" aria-hidden="true"></div>
 
-      <div class="results" id="results" role="list" aria-live="polite"></div>
-    </section>
-  </div>
+    <div class="results" id="results" role="list" aria-live="polite"></div>
+  </section>
+</div>
 
-  <!-- <script>
+<!-- <script>
     // Simple client-side search UI scaffold.
     // Replace fetchSearch() with your real backend endpoint or indexing search.
     (function(){

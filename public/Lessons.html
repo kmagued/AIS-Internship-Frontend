@@ -1,72 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Lessons Learned </title>
-  <link rel="stylesheet" href="Topbar.css">
-  <link rel="stylesheet" href="Search.css">
-  <link rel="stylesheet" href="cards.css">
-  <link rel="stylesheet" href="creat_lesson.html">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lessons Learned</title>
+    <link rel="stylesheet" href="Topbar.css" />
+    <link rel="stylesheet" href="Search.css" />
+    <link rel="stylesheet" href="cards.css" />
+    <link rel="stylesheet" href="creat_lesson.html" />
 
-  <style>
+    <style>
+      /* new: center the h5 in the middle of the page (overlaying the iframe) */
 
-    /* new: center the h5 in the middle of the page (overlaying the iframe) */
-    
-       #addBtn {
-      margin: 20px auto;
-      display: block;
-      padding: 10px 20px;
-      font-size: 1rem;
-      border: none;
-      background: green;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    #addBtn:hover {
-      background: darkgreen;
-    }
-  </style>
-</head>
-<body>
-<header>
-  <div id="topbar"></div>
-<script>
-  fetch("Topbar.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("topbar").innerHTML = html;
-    });
-</script>
-  
-  </header>
+      #addBtn {
+        margin: 20px auto;
+        display: block;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border: none;
+        background: green;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      #addBtn:hover {
+        background: darkgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div id="topbar"></div>
+      <script>
+        fetch("Topbar.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("topbar").innerHTML = html;
+          });
+      </script>
+    </header>
     <search-component></search-component>
 
-  <!-- ...existing code... -->
-  <!-- <iframe src="../index.html" title="Index"></iframe> -->
-<main>
+    <!-- ...existing code... -->
+    <!-- <iframe src="../index.html" title="Index"></iframe> -->
+    <main>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search lessons..." />
+      </div>
+      <div>
+        <button id="addBtn">
+          <a href="creat_lesson">Create Lesson</a>
+        </button>
+      </div>
+      <div id="cards"></div>
+      <!-- <div id="Search"></div> -->
+    </main>
+    <script src="Search.html"></script>
 
-<div class="search-container">
-  <input type="text" id="searchInput" placeholder="Search lessons...">
-</div>
-  <div>
-       <button id="addBtn">
-        <a href="creat_lesson">Create Lesson</a></button>
-    </div>
-  <div id="cards"></div>
-  <!-- <div id="Search"></div> -->
-   
-  </main>
-  <script src="Search.html"></script>
-    
-  <script>
-  fetch("cards.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("cards").innerHTML = html;
-      
-
-    });
-    
-</script>
-</body>
+    <script>
+      fetch("cards.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("cards").innerHTML = html;
+        });
+    </script>
+  </body>
+</html>
