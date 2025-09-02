@@ -1,0 +1,20 @@
+<div class="lesson-detail" *ngIf="lesson; else notFound">
+  <img [src]="lesson.image" [alt]="lesson.title" class="lesson-image">
+
+  <div class="lesson-info">
+    <h2>{{ lesson.title }}</h2>
+    <p class="author">By: {{ lesson.author }}</p>
+    <p class="description">{{ lesson.description }}</p>
+
+    <div class="tags">
+      <span class="tag" *ngFor="let tag of lesson.tags">{{ tag }}</span>
+    </div>
+  </div>
+</div>
+
+<ng-template #notFound>
+  <div class="not-found">
+    <h2>Lesson not found</h2>
+    <p>The lesson you are looking for does not exist.</p>
+  </div>
+</ng-template>

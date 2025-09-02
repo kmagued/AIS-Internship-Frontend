@@ -1,0 +1,57 @@
+.lesson-detail {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.lesson-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.lesson-info {
+  padding: 1.5rem;
+}
+
+.lesson-info h2 {
+  font-size: 1.5rem;
+  color: #222;
+  margin-bottom: 0.5rem;
+}
+
+.lesson-info .author {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.lesson-info .description {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  background: #eef2f7;
+  padding: 0.3rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.not-found {
+  text-align: center;
+  margin: 3rem 0;
+  color: #666;
+}

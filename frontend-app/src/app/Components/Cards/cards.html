@@ -1,42 +1,16 @@
 <div class="cards-container">
   <div class="card" *ngFor="let lesson of lessons">
-    <img [src]="lesson.image" [alt]="lesson.title">
+    <img [src]="lesson.image" [alt]="lesson.title" loading="lazy">
     <div class="card-content">
       <h4>{{ lesson.title }}</h4>
-      <p>By: {{ lesson.author }}</p>
-      <p>{{ lesson.description }}</p>
+      <p class="author">By: {{ lesson.author }}</p>
+      <p class="description">{{ lesson.description }}</p>
       <div class="tags">
         <span class="tag" *ngFor="let tag of lesson.tags">{{ tag }}</span>
       </div>
     </div>
-    <button (click)="openLesson(lesson)">Open lesson</button>
-  </div>
-  <div class="card">
-    <img src="https://picsum.photos/400/200" alt="lesson">
-    <div class="card-content">
-      <h4>MSL Level Control Inadequate</h4>
-      <p>By: Noor Al-Badawi</p>
-      <p>We lead the charge in industrial automation with projects...</p>
-      <div class="tags">
-        <span class="tag">MSL</span>
-        <span class="tag">Tricorex</span>
-      </div>
-    </div>
-    <button>Open lesson</button>
-  </div>
-  <div class="card">
-    <img src="https://picsum.photos/400/200" alt="lesson">
-    <div class="card-content">
-      <h4>MSL Level Control Inadequate</h4>
-      <p>By: Noor Al-Badawi</p>
-      <p>We lead the charge in industrial automation with projects...</p>
-      <div class="tags">
-        <span class="tag">MSL</span>
-        <span class="tag">Tricorex</span>
-      </div>
-    </div>
-    <button onclick="window.location.href='Open_lesson.html'">Open lesson</button>
-
+    <button (click)="openLesson(lesson)" aria-label="Open {{lesson.title}}">
+      Open Lesson
+    </button>
   </div>
 </div>
-   

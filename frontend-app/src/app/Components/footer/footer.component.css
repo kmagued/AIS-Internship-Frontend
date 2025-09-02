@@ -1,0 +1,14 @@
+footer {
+  background-color: #222;   /* Dark background */
+  color: #fff;             /* White text */
+  text-align: center;      /* Centered text */
+  padding: 0.75rem;        /* Space inside */
+  position: sticky;        /* Stick to bottom */
+  bottom: 0;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin: 0;               /* Remove default paragraph margin */
+}

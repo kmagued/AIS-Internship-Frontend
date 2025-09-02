@@ -1,8 +1,18 @@
 :root {
   --accent:#06b6d4;
   --muted:#9aa4b2;
-  --white:#0f1724; /* text color (dark now since no bg) */
+  --white:#0f1724;
 }
+
+.container {
+  width: 100%;
+  max-width: 920px;
+  margin: 2rem auto;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  color: var(--white);
+}
+
+
 
 body {
   margin: 0;
@@ -14,11 +24,6 @@ body {
   align-items: flex-start;
   justify-content: center;
   padding: 5px 16px;
-}
-
-.container {
-  width: 100%;
-  max-width: 920px;
 }
 
 header {

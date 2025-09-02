@@ -1,23 +1,3 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Create Lesson</title>
-  <!-- <link rel="stylesheet" href="Topbar.css"> -->
-  <link rel="stylesheet" href="create-lesson.css">
-
-  <div id="topbar"></div>
-<script>
-  fetch("Topbar.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("topbar").innerHTML = html;
-    });
-</script>
-</head>
-<body>
-    
-
 <div class="create-lesson">
   <h2>Create Lesson</h2>
 
@@ -33,17 +13,23 @@
         minlength="10" 
         #title="ngModel">
       <div *ngIf="title.invalid && title.touched" class="error">
-       
-        <div *ngIf="title.errors?.['minlength']">Title should be at least 10 characters long.</div>
+        <div *ngIf="title.errors?.['minlength']">
+          Title should be at least 10 characters long.
+        </div>
       </div>
     </div>
 
     <!-- Project -->
-   <div class="form-group">
-        <label for="projectName">Project Name*</label>
-        <input type="text" id="projectName" value="DCS Installation">
-        <div class="form-hint">This is a hint text to help user.</div>
-      </div>
+    <div class="form-group">
+      <label for="projectName">Project Name *</label>
+      <input 
+        type="text" 
+        id="projectName" 
+        name="project"
+        [(ngModel)]="lesson.project" 
+        required>
+      <div class="form-hint">This is a hint text to help user.</div>
+    </div>
 
     <!-- Department & Segment -->
     <div class="form-group">
@@ -55,10 +41,9 @@
         <option value="Digital Solutions">Digital Solutions</option>
         <option value="Project Services">Project Services</option>
       </select>
-      <div *ngIf="department.invalid && department.touched" class="error">
-        <!-- Department is required. -->
-      </div>
-        <label>segment *</label>
+      <div *ngIf="department.invalid && department.touched" class="error"></div>
+
+      <label>Segment *</label>
       <select name="segment" [(ngModel)]="lesson.segment" required #segment="ngModel">
         <option value="">Segment</option>
         <option value="Oil & Gas">Oil & Gas</option>
@@ -78,9 +63,7 @@
         <option value="Aerospace">Aerospace</option>
         <option value="Others">Others</option>
       </select>
-      <div *ngIf="segment.invalid && segment.touched" class="error">
-        <!-- Segment is required. -->
-      </div>
+      <div *ngIf="segment.invalid && segment.touched" class="error"></div>
     </div>
 
     <!-- Vendor -->
@@ -128,6 +111,7 @@
     </div>
   </form>
 </div>
+
 <h3>All Lessons</h3>
 <div class="cards-container">
   <div class="card" *ngFor="let item of lessons">
@@ -146,12 +130,7 @@
       </div>
     </div>
     <div>
-       <button>
-        <a href="Open_lesson">Open Lesson</a></button>
+      <button (click)="openLesson(item)">Open Lesson</button>
     </div>
-    
   </div>
 </div>
-
-</body>
-</html>

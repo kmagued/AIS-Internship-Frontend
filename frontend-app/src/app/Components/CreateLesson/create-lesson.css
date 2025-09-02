@@ -1,94 +1,73 @@
 .create-lesson {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  max-width: 800px;
+  max-width: 700px;
   margin: 2rem auto;
-  font-family: "Inter", sans-serif;
-  color: #333;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  font-family: Arial, sans-serif;
 }
 
 .create-lesson h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.8rem;
   margin-bottom: 1.5rem;
   color: #222;
+  text-align: center;
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 1.25rem;
 }
 
-.form-group label {
-  font-weight: 500;
+label {
+  display: block;
   margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
 }
 
-.form-group input,
-.form-group select {
-  padding: 0.75rem 1rem;
-  border: 1px solid #d0d5dd;
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 0.95rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
 }
 
-.form-group input:focus,
-.form-group select:focus {
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #007bff;
   outline: none;
-  border-color: #1976d2;
-  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
 }
 
-.form-group .hint {
-  font-size: 0.85rem;
-  color: #6b7280;
-  margin-top: 0.25rem;
+textarea {
+  resize: vertical;
+  min-height: 120px;
 }
 
-.error {
-  font-size: 0.85rem;
-  color: #d32f2f;
-  margin-top: 0.25rem;
-}
-
-.form-actions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.form-actions button {
-  padding: 0.75rem 1.5rem;
-  font-size: 0.95rem;
+button {
+  display: inline-block;
+  width: 100%;
+  padding: 0.9rem 1.25rem;
+  background: #007bff;
+  color: white;
   border: none;
   border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background 0.3s ease;
 }
 
-.form-actions button[type="button"] {
-  background: #f3f4f6;
-  color: #374151;
+button:hover {
+  background: #0056b3;
 }
 
-.form-actions button[type="button"]:hover {
-  background: #e5e7eb;
-}
-
-.form-actions button[type="submit"] {
-  background: #1976d2;
-  color: #fff;
-}
-
-.form-actions button[type="submit"]:disabled {
-  background: #9ca3af;
+button:disabled {
+  background: #ccc;
   cursor: not-allowed;
-}
-
-.form-actions button[type="submit"]:hover:enabled {
-  background: #1565c0;
 }

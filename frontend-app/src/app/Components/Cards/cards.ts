@@ -4,7 +4,7 @@ import { Lesson } from '../../interfaces/lesson.interface';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-cards',   
+  selector: 'app-cards',
   templateUrl: './cards.html',
   styleUrls: ['./cards.css'],
   standalone: true,
@@ -37,8 +37,12 @@ export class CardsComponent {
     }
   ];
 
-  openLesson(lesson: Lesson): void {
-    // Navigate to the lesson detail page with the lesson's data
-    this.router.navigate(['/lesson', lesson.title.toLowerCase().replace(/ /g, '-')]);
+  openLesson(lessons: Lesson): void {
+    const slug = lessons.title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-') // replace spaces & symbols with hyphens
+      .replace(/^-+|-+$/g, '');   // trim hyphens
+
+    this.router.navigate(['/lesson', slug]);
   }
 }
