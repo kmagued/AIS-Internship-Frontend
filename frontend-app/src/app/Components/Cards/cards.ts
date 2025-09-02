@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Lesson } from '../../interfaces/lesson.interface';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-lessons',   
-  templateUrl: './lessons.component.html',
-  styleUrls: ['./lessons.component.css']
+  selector: 'app-cards',   
+  templateUrl: './cards.html',
+  styleUrls: ['./cards.css'],
+  standalone: true,
+  imports: [CommonModule]
 })
-export class LessonsComponent {
-  lessons = [
+export class CardsComponent {
+  constructor(private router: Router) {}
+
+  lessons: Lesson[] = [
     {
       title: "MSL Level Control Inadequate",
       author: "Noor Al-Badawi",
@@ -29,4 +36,9 @@ export class LessonsComponent {
       image: "https://picsum.photos/400/200"
     }
   ];
+
+  openLesson(lesson: Lesson): void {
+    // Navigate to the lesson detail page with the lesson's data
+    this.router.navigate(['/lesson', lesson.title.toLowerCase().replace(/ /g, '-')]);
+  }
 }

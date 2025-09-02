@@ -1,23 +1,75 @@
-.search-container {
-    padding: 30px ;
-  text-align: center;
-  margin: 20px 0;
+.cards-container {
+  dis.card-content {
+  padding: 1.5rem;
 }
 
-#searchInput {
-  width: 100%;
-  max-width: 1500px;
-  padding: 10px 15px;
-  font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+.card-content h4 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+  color: #333;
 }
-#searchButton {
-  padding: 10px 20px;
-  font-size: 1rem;
-  border: none;
-  background-color: black;
+
+.card-content p {
+  margin: 0.5rem 0;
+  color: #666;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.tag {
+  background: #f0f0f0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  background: #007bff;
   color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background: #0056b3;
+
+ay: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 1.5rem;
+
   border-radius: 8px;
   cursor: pointer;
 }
@@ -98,3 +150,4 @@ body {
     .card button:hover {
       background: #333;
     }
+  }
