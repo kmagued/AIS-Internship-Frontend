@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Lesson } from '../interfaces/lesson.interface';
+import { Lesson, LessonForm } from '../interfaces/lesson.interface';
 
 @Injectable({
   providedIn: 'root'
